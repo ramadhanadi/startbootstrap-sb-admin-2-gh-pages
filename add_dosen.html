@@ -9,7 +9,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Add - Mata Kuliah</title>
+    <title>Add - Dosen</title>
 
     <!-- Bootstrap CSS via CDN -->
     <link
@@ -177,38 +177,28 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Mata Kuliah</h1>
+            <h1 class="h3 mb-4 text-gray-800">Dosen</h1>
             <form class="user">
-              <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input
-                    type="text"
-                    class="form-control form-control-user"
-                    id="kode"
-                    placeholder="Kode Mata Kuliah"
-                  />
-                </div>
-                <div class="col-sm-6">
-                  <input
-                    type="number"
-                    class="form-control form-control-user"
-                    id="sks"
-                    placeholder="SKS"
-                  />
-                </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control form-control-user"
+                  id="kode"
+                  placeholder="Kode Dosen"
+                />
               </div>
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control form-control-user"
                   id="nama"
-                  placeholder="Nama Mata Kuliah"
+                  placeholder="Nama Dosen"
                 />
               </div>
               <input
                 type="button"
                 value="Save"
-                onclick="save_mk();"
+                onclick="save_dosen();"
                 class="btn btn-primary btn-user btn-block"
               />
               <hr />
@@ -249,7 +239,6 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-
             <button
               class="close"
               type="button"
@@ -286,19 +275,17 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script>
-      var databaseRef = firebase.database().ref("matakuliah/");
-      function save_mk() {
+      var databaseRef = firebase.database().ref("dosen/");
+      function save_dosen() {
         var kode = document.getElementById("kode").value;
-        var sks = document.getElementById("sks").value;
         var nama = document.getElementById("nama").value;
-        var uid = firebase.database().ref().child("matakuliah").push().key;
+        var uid = firebase.database().ref().child("dosen").push().key;
         var data = {
           kode: kode,
-          sks: sks,
           nama: nama,
         };
         var updates = {};
-        updates["/matakuliah/" + uid] = data;
+        updates["/dosen/" + uid] = data;
         firebase.database().ref().update(updates);
         alert("mata kuliah created successfully!");
         reload_page();
